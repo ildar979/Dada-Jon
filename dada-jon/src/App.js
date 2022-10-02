@@ -1,7 +1,7 @@
 import '../src/scss/app.scss';
 import Categories from './components/Categories';
 import Header from './components/Header';
-import Pizza from './components/Pizza';
+import Pizzas from './components/Pizzas';
 import Sort from './components/Sort';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            <Pizza />
+            <Pizzas />
           </div>
         </div>
       </div>
