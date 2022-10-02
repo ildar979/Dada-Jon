@@ -4,7 +4,7 @@ import Pizza from './Pizza';
 const Pizzas = () => {
   return (
     <>
-      {listPizza.map((pizza) => (
+      {listPizza?.map((pizza) => (
         <Pizza pizza={pizza} key={pizza.id} />
       ))}
     </>

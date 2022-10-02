@@ -12,19 +12,23 @@ const Pizza = ({ pizza }) => {
       <h4 className="pizza-block__title">{pizza.title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {pizza.types.map((type) => (
+          {pizza.types?.map((type) => (
             <li
               onClick={() => {
                 setPickType(type);
               }}
+              key={type}
               className={pickType === type ? 'active' : ''}>
               {pizzaType[type]}
             </li>
           ))}
         </ul>
         <ul>
-          {pizza.sizes.map((size, index) => (
-            <li onClick={() => setPickSize(index)} className={pickSize === index ? 'active' : ''}>
+          {pizza.sizes?.map((size, index) => (
+            <li
+              key={index}
+              onClick={() => setPickSize(index)}
+              className={pickSize === index ? 'active' : ''}>
               {size} см.
             </li>
           ))}
