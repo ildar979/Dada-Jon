@@ -1,26 +1,24 @@
+import { Route, Routes } from 'react-router-dom';
 import '../src/scss/app.scss';
-import Categories from './components/Categories';
 import Header from './components/Header';
-import Pizzas from './components/Pizzas';
-import Sort from './components/Sort';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
     <div className="wrapper">
+      {/* <div className="content">
+        <div className="container"> */}
       <Header />
-      <div className="content">
-        <div className="container">
-          <div className="content__top">
-            <Categories />
-            <Sort />
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className="content__items">
-            <Pizzas />
-          </div>
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
+    //   </div>
+    // </div>
   );
 }
 
