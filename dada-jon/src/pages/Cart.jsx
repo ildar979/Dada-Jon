@@ -1,12 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CartItem from '../components/CartItem';
 
 const Cart = () => {
+  const items = useSelector((state) => state.cart.items);
+
   return (
     <div className="container container--cart">
-      <div class="cart">
-        <div class="cart__top">
-          <h2 class="content__title">
+      <div className="cart">
+        <div className="cart__top">
+          <h2 className="content__title">
             <svg
               width="18"
               height="18"
@@ -34,7 +38,7 @@ const Cart = () => {
             </svg>
             Корзина
           </h2>
-          <div class="cart__clear">
+          <div className="cart__clear">
             <svg
               width="20"
               height="20"
@@ -70,11 +74,15 @@ const Cart = () => {
             <span>Очистить корзину</span>
           </div>
         </div>
-        <div class="content__items">
-          <div class="cart__item">
-            <div class="cart__item-img">
+        <div className="content__items">
+          {items?.map((item) => (
+            <CartItem item={item} key={item.id} />
+          ))}
+
+          {/* <div className="cart__item">
+            <div className="cart__item-img">
               <img
-                class="pizza-block__image"
+                className="pizza-block__image"
                 src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
                 alt="Pizza"
               />
@@ -334,10 +342,10 @@ const Cart = () => {
                 </svg>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
-        <div class="cart__bottom">
-          <div class="cart__bottom-details">
+        <div className="cart__bottom">
+          <div className="cart__bottom-details">
             <span>
               {' '}
               Всего пицц: <b>3 шт.</b>{' '}
@@ -347,8 +355,8 @@ const Cart = () => {
               Сумма заказа: <b>900 ₽</b>{' '}
             </span>
           </div>
-          <div class="cart__bottom-buttons">
-            <Link to="/" class="button button--outline button--add go-back-btn">
+          <div className="cart__bottom-buttons">
+            <Link to="/" className="button button--outline button--add go-back-btn">
               <svg
                 width="8"
                 height="14"
@@ -365,7 +373,7 @@ const Cart = () => {
 
               <span>Вернуться назад</span>
             </Link>
-            <div class="button pay-btn">
+            <div className="button pay-btn">
               <span>Оплатить сейчас</span>
             </div>
           </div>

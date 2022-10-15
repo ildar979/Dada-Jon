@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../redux/slices/cartSlise';
 
 const Pizza = ({ pizza }) => {
   const pizzaType = ['тонкое', 'традиционное'];
+  const item = useSelector((state) => state.cart.items.find((obj) => obj.id === pizza.id));
+  const addedItem = item ? item.count : 0;
 
   const [pickType, setPickType] = useState(0);
   const [pickSize, setPickSize] = useState(0);
+
+  const dispatch = useDispatch();
+  const handleAddItem = () => {
+    const item = {
+      id: pizza.id,
+      title: pizza.title,
+      price: pizza.price,
+      imageUrl: pizza.imageUrl,
+      type: pizzaType[pickType],
+      size: pickSize,
+    };
+    dispatch(addItem(item));
+  };
 
   return (
     <div className="pizza-block-wrapper">
@@ -37,7 +54,7 @@ const Pizza = ({ pizza }) => {
         </div>
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">от {pizza.price} ₽</div>
-          <button className="button button--outline button--add">
+          <button onClick={handleAddItem} className="button button--outline button--add">
             <svg
               width="12"
               height="12"
@@ -50,7 +67,7 @@ const Pizza = ({ pizza }) => {
               />
             </svg>
             <span>Добавить</span>
-            <i>0</i>
+            {addedItem > 0 && <i>{addedItem}</i>}
           </button>
         </div>
       </div>
